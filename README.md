@@ -14,3 +14,7 @@ Assets management system
 ### Starting Development Environement
 
 run `$ make` in root project directory.
+
+### Generate migration
+
+run `$ make migrate`
