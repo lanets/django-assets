@@ -6,11 +6,11 @@ Assets management system
 ### Dependencies
 
  - Docker*
- - Docker Compose
+ - Docker-Compose
  - Make
 
 *Configuring non-root access is recommanded
 
 ### Starting Development Environement
 
-run `$ docker-compose up` in root project directory.
+run `$ make` in root project directory.
