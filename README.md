@@ -7,6 +7,7 @@ Assets management system
 
  - Docker*
  - Docker Compose
+ - Make
 
 *Configuring non-root access is recommanded
 
