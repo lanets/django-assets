@@ -25,7 +25,7 @@ SECRET_KEY = '=#0irkgka4+eh_d9l6hkn&fi$v&i7^$_bof&3&$fi%)dedhq$_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -75,11 +75,11 @@ WSGI_APPLICATION = 'djangoAssets.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.mongo',
-         'NAME': 'mongo',
-         'USER': 'mongo',
-         'HOST': 'db',
-         'PORT': 5432
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
