@@ -1,8 +1,6 @@
 FROM python:3.5
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update
-
 # Add the working directory
 RUN mkdir /opt/django-assets
 WORKDIR /opt/django-assets
