@@ -9,7 +9,11 @@ services:
       MYSQL_PASSWORD: lanets
       MYSQL_DATABASE: lanets
       MYSQL_ROOT_PASSWORD: lanets
-    
+    healthcheck:
+      test: ["CMD", "ping", "-h", "localhost:3306"]
+      timeout: 20s
+      retries: 10
+
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
