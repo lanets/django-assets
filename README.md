@@ -14,7 +14,7 @@ Assets management system
 ### Starting Development Environement
 
  - run `$ make` in root project directory.
- - Access the app via your browser at 0.0.0.0:8000
+ - Access the app via your browser at localhost:8000
 
 ### Generate migration
 
