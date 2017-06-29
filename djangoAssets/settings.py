@@ -75,11 +75,12 @@ WSGI_APPLICATION = 'djangoAssets.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lanets',
+        'USER': 'lanets',
+        'PASSWORD': 'lanets',
+        'HOST': 'mariadb',
+        'PORT': 3306,
     }
 }
 

@@ -1,8 +1,15 @@
 version: '3'
 
 services:
-  db:
-    image: postgres
+
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_USER: lanets
+      MYSQL_PASSWORD: lanets
+      MYSQL_DATABASE: lanets
+      MYSQL_ROOT_PASSWORD: lanets
+    
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
@@ -11,4 +18,6 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - mariadb
+    links:
+      - mariadb
