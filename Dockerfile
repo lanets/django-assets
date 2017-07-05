@@ -9,4 +9,5 @@ WORKDIR /opt/django-assets
 ADD requirements.txt /opt/django-assets
 RUN pip install -r requirements.txt
 
+# Add every project files in the container
 ADD . /opt/django-assets

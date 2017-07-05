@@ -1,9 +1,11 @@
-version: '3'
+version: '2'
 
 services:
 
   mariadb:
     image: mariadb
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_USER: lanets
       MYSQL_PASSWORD: lanets
@@ -12,12 +14,15 @@ services:
 
   web:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: |
+              bash -c 'bash -s <<EOF
+              /opt/django-assets/wait-for-it/wait-for-it.sh --timeout=0 mariadb:3306 && \
+              python /opt/django-assets/manage.py migrate && \
+              python /opt/django-assets/manage.py runserver 0.0.0.0:8000
+              EOF'
     volumes:
       - .:/opt/django-assets
     ports:
       - "8000:8000"
     depends_on:
-      - mariadb
-    links:
       - mariadb
