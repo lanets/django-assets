@@ -1,4 +1,4 @@
-FROM python:3.5
+FROM python:3
 ENV PYTHONUNBUFFERED 1
 
 # Add the working directory

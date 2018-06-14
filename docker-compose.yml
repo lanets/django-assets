@@ -4,8 +4,6 @@ services:
 
   mariadb:
     image: mariadb
-    ports:
-      - "3306:3306"
     environment:
       MYSQL_USER: lanets
       MYSQL_PASSWORD: lanets

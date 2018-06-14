@@ -9,6 +9,9 @@ build:
 migrate:
 	docker-compose run web python manage.py migrate
 
+.PHONY: makemigrations
+makemigrations:
+	docker-compose run web python manage.py makemigrations
 ###################
 ## Docker target##
 ###################
