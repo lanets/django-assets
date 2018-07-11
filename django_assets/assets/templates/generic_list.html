@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load assets %}
+
+{% block content %}
+{% get_meta model=view.model as class %}
+<section class="statistic">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                  <!-- USER DATA-->
+                  <div class="user-data m-b-40">
+                      <h3 class="title-3 m-b-30">
+                          {{ class.name }}{{ object_list|length|pluralize }}
+                      </h3>
+                      <div class="table-responsive table-data">
+                          <table class="table">
+                              <thead>
+                                  <tr>
+                                    {% for field in class.fields %}
+                                    <td>{{ field.verbose_name|title }}</td>
+                                    {% endfor %}
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for object in object_list %}
+                                  <tr>
+                                    {% for field in class.fields %}
+                                    <td>{{ object|getfield:field }}</td>
+                                    {% endfor %}
+                                  </tr>
+                                {% empty %}
+                                  <tr>
+                                    <td colspan="{{ class.fields|length }}" class="text-center bg-warning">No {{ class.name }}</td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

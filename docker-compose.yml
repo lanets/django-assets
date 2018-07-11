@@ -11,6 +11,8 @@ services:
       MYSQL_ROOT_PASSWORD: lanets
 
   web:
+    tty: true
+    stdin_open: true
     build: .
     command: |
               bash -c 'bash -s <<EOF

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n assets %}
 
 {% block content %}
 
@@ -10,39 +10,39 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                     <div class="statistic__item">
-                        <h2 class="number">10,368</h2>
-                        <span class="desc">{% trans 'Items '%}</span>
+                        <h2 class="number">{% asset_count %}</h2>
+                        <span class="desc"><a href="{% url 'assets:asset-list' %}">{% trans 'Actifs' %}</a></span>
                         <div class="icon">
-                            <i class="zmdi zmdi-account-o"></i>
+                            <i class="zmdi zmdi-collection-item"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item">
+                        <h2 class="number">{% location_count %}</h2>
+                        <span class="desc"><a href="{% url 'assets:location-list' %}">{% trans 'Emplacements' %}</a></span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-globe"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item">
+                        <h2 class="number">{% supplier_count %}</h2>
+                        <span class="desc"><a href="{% url 'assets:supplier-list' %}">{% trans 'Fournisseurs' %}</a></span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-truck"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                   <div class="statistic__item">
-                    <h2 class="number">$1,060,386</h2>
-                    <span class="desc">{% trans 'Catégories' %}</span>
+                    <h2 class="number">${% assets_value %}</h2>
+                    <span class="desc">{% trans 'Valeur totale' %}</span>
                     <div class="icon">
                       <i class="zmdi zmdi-money"></i>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="statistic__item">
-                        <h2 class="number">388,688</h2>
-                        <span class="desc">{% trans 'Emplacements' %}</span>
-                        <div class="icon">
-                            <i class="zmdi zmdi-shopping-cart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="statistic__item">
-                        <h2 class="number">1,086</h2>
-                        <span class="desc">{% trans 'Fournisseurs' %}</span>
-                        <div class="icon">
-                            <i class="zmdi zmdi-calendar-note"></i>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -97,40 +97,9 @@
                 <div class="col-xl-4">
                     <!-- TASK PROGRESS-->
                     <div class="task-progress">
-                        <h3 class="title-3">task progress</h3>
+                        <h3 class="title-3">{% trans 'État des actifs'%}</h3>
                         <div class="au-skill-container">
-                            <div class="au-progress">
-                                <span class="au-progress__title">Web Design</span>
-                                <div class="au-progress__bar">
-                                    <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="90">
-                                        <span class="au-progress__value js-value"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="au-progress">
-                                <span class="au-progress__title">HTML5/CSS3</span>
-                                <div class="au-progress__bar">
-                                    <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="85">
-                                        <span class="au-progress__value js-value"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="au-progress">
-                                <span class="au-progress__title">WordPress</span>
-                                <div class="au-progress__bar">
-                                    <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="95">
-                                        <span class="au-progress__value js-value"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="au-progress">
-                                <span class="au-progress__title">Support</span>
-                                <div class="au-progress__bar">
-                                    <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="95">
-                                        <span class="au-progress__value js-value"></span>
-                                    </div>
-                                </div>
-                            </div>
+                            <canvas id="assets_states_chart"></canvas>
                         </div>
                     </div>
                     <!-- END TASK PROGRESS-->
@@ -148,25 +117,9 @@
                     <!-- USER DATA-->
                     <div class="user-data m-b-40">
                         <h3 class="title-3 m-b-30">
-                            <i class="zmdi zmdi-account-calendar"></i>user data</h3>
-                        <div class="filters m-b-45">
-                            <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                                <select class="js-select2" name="property">
-                                    <option selected="selected">All Properties</option>
-                                    <option value="">Products</option>
-                                    <option value="">Services</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
-                            <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                                <select class="js-select2 au-select-dark" name="time">
-                                    <option selected="selected">All Time</option>
-                                    <option value="">By Month</option>
-                                    <option value="">By Day</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
-                        </div>
+                            <i class="zmdi zmdi-account-calendar"></i>
+                            Utilisateurs
+                        </h3>
                         <div class="table-responsive table-data">
                             <table class="table">
                                 <thead>
@@ -177,13 +130,14 @@
                                                 <span class="au-checkmark"></span>
                                             </label>
                                         </td>
-                                        <td>name</td>
-                                        <td>role</td>
-                                        <td>type</td>
+                                        <td>Nom</td>
+                                        <td>Groupes</td>
+                                        <td>Nom d'utilisateur</td>
                                         <td></td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  {% for user in users %}
                                     <tr>
                                         <td>
                                             <label class="au-checkbox">
@@ -193,24 +147,22 @@
                                         </td>
                                         <td>
                                             <div class="table-data__info">
-                                                <h6>lori lynch</h6>
+                                                <h6>{{ user.username }}</h6>
                                                 <span>
-                                                    <a href="#">johndoe@gmail.com</a>
+                                                    <a href="#">{{ user.email }}</a>
                                                 </span>
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="role admin">admin</span>
+                                            {{ user.username }}
                                         </td>
                                         <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">Full Control</option>
-                                                    <option value="">Post</option>
-                                                    <option value="">Watch</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
+                                          {% for group in users.groups %}
+                                            <span class="role admin">{{ group }}</span>
+                                          {% endfor %}
+                                          {% if user.is_superuser %}
+                                            <span class="role admin">Administrateur</span>
+                                          {% endif %}
                                         </td>
                                         <td>
                                             <span class="more">
@@ -218,108 +170,8 @@
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox" checked="checked">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div class="table-data__info">
-                                                <h6>lori lynch</h6>
-                                                <span>
-                                                    <a href="#">johndoe@gmail.com</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="role user">user</span>
-                                        </td>
-                                        <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option value="">Full Control</option>
-                                                    <option value="" selected="selected">Post</option>
-                                                    <option value="">Watch</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="more">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div class="table-data__info">
-                                                <h6>lori lynch</h6>
-                                                <span>
-                                                    <a href="#">johndoe@gmail.com</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="role user">user</span>
-                                        </td>
-                                        <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option value="">Full Control</option>
-                                                    <option value="" selected="selected">Post</option>
-                                                    <option value="">Watch</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="more">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div class="table-data__info">
-                                                <h6>lori lynch</h6>
-                                                <span>
-                                                    <a href="#">johndoe@gmail.com</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="role member">member</span>
-                                        </td>
-                                        <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">Full Control</option>
-                                                    <option value="">Post</option>
-                                                    <option value="">Watch</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="more">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
+                                  {% endfor %}
+
                                 </tbody>
                             </table>
                         </div>
@@ -412,4 +264,72 @@
         </div>
     </div>
 </section>
+
+
+{% endblock %}
+
+{% block extra_footer_scripts %}
+<script>
+var colors = [
+
+  '#232346', // pink
+  '#3280FF', // blue
+  '#6400FF', // red
+  '#480C9F', // green
+  '#00FFFF', // orange
+  '#4D4D4D', // gray
+  '#5DA5DA', // blue
+  '#FAA43A', // orange
+  '#F15854', // red
+  '#60BD68', // green
+  '#F17CB0', // pink
+  '#4D4D4D', // gray
+  '#5DA5DA', // blue
+  '#FAA43A', // orange
+  '#F15854', // red
+  '#60BD68', // green
+  '#F17CB0', // pink
+  '#4D4D4D', // gray
+  '#5DA5DA', // blue
+  '#FAA43A', // orange
+  '#F15854', // red
+  '#60BD68', // green
+  '#F17CB0', // pink
+  '#4D4D4D', // gray
+]
+var state_data = []
+var state_labels = []
+
+{% assets_states as states %}
+{% for state, count in states.items %}
+state_data.push({{ count }});
+state_labels.push("{{ state|escapejs }}");
+{% endfor %}
+
+var data = {
+  datasets: [{
+    data: state_data,
+    backgroundColor: colors,
+  }],
+  labels: state_labels,
+}
+var options = {
+    legend:{
+        display: true,
+        position: 'right',
+        labels:{
+            fontColor: '#000',
+        }
+    }
+}
+
+var ctx = document.getElementById("assets_states_chart");
+
+var myPieChart = new Chart(ctx,{
+    type: 'doughnut',
+    data: data,
+    options: options
+});
+
+</script>
 {% endblock %}
