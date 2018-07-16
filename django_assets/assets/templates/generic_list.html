@@ -4,12 +4,12 @@
 {% block content %}
 {% get_meta model=view.model as class %}
 <section class="statistic">
-    <div class="section__content section__content--p30">
+    <div class="section__content ">
         <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
                   <!-- USER DATA-->
-                  <div class="user-data m-b-40">
+                  <div class="user-data">
                       <h3 class="title-3 m-b-30">
                           {{ class.name }}{{ object_list|length|pluralize }}
                       </h3>

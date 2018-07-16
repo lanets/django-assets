@@ -54,46 +54,71 @@
     <div class="section__content section__content--p30">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-8">
-                    <!-- RECENT REPORT 2-->
-                    <div class="recent-report2">
-                        <h3 class="title-3">recent reports</h3>
-                        <div class="chart-info">
-                            <div class="chart-info__left">
-                                <div class="chart-note">
-                                    <span class="dot dot--blue"></span>
-                                    <span>products</span>
-                                </div>
-                                <div class="chart-note">
-                                    <span class="dot dot--green"></span>
-                                    <span>Services</span>
-                                </div>
-                            </div>
-                            <div class="chart-info-right">
-                                <div class="rs-select2--dark rs-select2--md m-r-10">
-                                    <select class="js-select2" name="property">
-                                        <option selected="selected">All Properties</option>
-                                        <option value="">Products</option>
-                                        <option value="">Services</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                                <div class="rs-select2--dark rs-select2--sm">
-                                    <select class="js-select2 au-select-dark" name="time">
-                                        <option selected="selected">All Time</option>
-                                        <option value="">By Month</option>
-                                        <option value="">By Day</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recent-report__chart">
-                            <canvas id="recent-rep2-chart"></canvas>
-                        </div>
-                    </div>
-                    <!-- END RECENT REPORT 2             -->
-                </div>
+              <div class="col-xl-8">
+                  <!-- USER DATA-->
+                  <div class="user-data m-b-40">
+                      <h3 class="title-3 m-b-30">
+                          <i class="zmdi zmdi-account-calendar"></i>
+                          Utilisateurs
+                      </h3>
+                      <div class="table-responsive table-data">
+                          <table class="table">
+                              <thead>
+                                  <tr>
+                                      <td>
+                                          <label class="au-checkbox">
+                                              <input type="checkbox">
+                                              <span class="au-checkmark"></span>
+                                          </label>
+                                      </td>
+                                      <td>Nom</td>
+                                      <td>Groupes</td>
+                                      <td>Nom d'utilisateur</td>
+                                      <td></td>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for user in users %}
+                                  <tr>
+                                      <td>
+                                          <label class="au-checkbox">
+                                              <input type="checkbox">
+                                              <span class="au-checkmark"></span>
+                                          </label>
+                                      </td>
+                                      <td>
+                                          <div class="table-data__info">
+                                              <h6>{{ user.username }}</h6>
+                                              <span>
+                                                  <a href="#">{{ user.email }}</a>
+                                              </span>
+                                          </div>
+                                      </td>
+                                      <td>
+                                          {{ user.username }}
+                                      </td>
+                                      <td>
+                                        {% for group in users.groups %}
+                                          <span class="role admin">{{ group }}</span>
+                                        {% endfor %}
+                                        {% if user.is_superuser %}
+                                          <span class="role admin">Administrateur</span>
+                                        {% endif %}
+                                      </td>
+                                      <td>
+                                          <span class="more">
+                                              <i class="zmdi zmdi-more"></i>
+                                          </span>
+                                      </td>
+                                  </tr>
+                                {% endfor %}
+
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <!-- END USER DATA-->
+              </div>
                 <div class="col-xl-4">
                     <!-- TASK PROGRESS-->
                     <div class="task-progress">
@@ -103,150 +128,6 @@
                         </div>
                     </div>
                     <!-- END TASK PROGRESS-->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="section__content section__content--p30">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-6">
-                    <!-- USER DATA-->
-                    <div class="user-data m-b-40">
-                        <h3 class="title-3 m-b-30">
-                            <i class="zmdi zmdi-account-calendar"></i>
-                            Utilisateurs
-                        </h3>
-                        <div class="table-responsive table-data">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>Nom</td>
-                                        <td>Groupes</td>
-                                        <td>Nom d'utilisateur</td>
-                                        <td></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  {% for user in users %}
-                                    <tr>
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <div class="table-data__info">
-                                                <h6>{{ user.username }}</h6>
-                                                <span>
-                                                    <a href="#">{{ user.email }}</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {{ user.username }}
-                                        </td>
-                                        <td>
-                                          {% for group in users.groups %}
-                                            <span class="role admin">{{ group }}</span>
-                                          {% endfor %}
-                                          {% if user.is_superuser %}
-                                            <span class="role admin">Administrateur</span>
-                                          {% endif %}
-                                        </td>
-                                        <td>
-                                            <span class="more">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                  {% endfor %}
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="user-data__footer">
-                            <button class="au-btn au-btn-load">load more</button>
-                        </div>
-                    </div>
-                    <!-- END USER DATA-->
-                </div>
-                <div class="col-xl-6">
-                    <!-- MAP DATA-->
-                    <div class="map-data m-b-40">
-                        <h3 class="title-3 m-b-30">
-                            <i class="zmdi zmdi-map"></i>map data</h3>
-                        <div class="filters">
-                            <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                                <select class="js-select2" name="property">
-                                    <option selected="selected">All Worldwide</option>
-                                    <option value="">Products</option>
-                                    <option value="">Services</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
-                            <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                                <select class="js-select2 au-select-dark" name="time">
-                                    <option selected="selected">All Time</option>
-                                    <option value="">By Month</option>
-                                    <option value="">By Day</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
-                        </div>
-                        <div class="map-wrap m-t-45 m-b-80">
-                            <div id="vmap" style="height: 284px;"></div>
-                        </div>
-                        <div class="table-wrap">
-                            <div class="table-responsive table-style1">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>United States</td>
-                                            <td>$119,366.96</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Australia</td>
-                                            <td>$70,261.65</td>
-                                        </tr>
-                                        <tr>
-                                            <td>United Kingdom</td>
-                                            <td>$46,399.22</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="table-responsive table-style1">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>Germany</td>
-                                            <td>$20,366.96</td>
-                                        </tr>
-                                        <tr>
-                                            <td>France</td>
-                                            <td>$10,366.96</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Russian</td>
-                                            <td>$5,366.96</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END MAP DATA-->
                 </div>
             </div>
         </div>
