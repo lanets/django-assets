@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -25,11 +24,11 @@ SECRET_KEY = '=#0irkgka4+eh_d9l6hkn&fi$v&i7^$_bof&3&$fi%)dedhq$_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '10.196.115.57']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '10.196.115.57', 'ass.ets']
 
 # Django jet
-JET_DEFAULT_THEME = 'light-violet'
-
+JET_DEFAULT_THEME = 'default'
+JET_SIDE_MENU_COMPACT = True
 
 
 # Application definition
@@ -138,3 +137,5 @@ STATIC_URL = '/static/'
 # ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "django_assets/static")
+
+LANGUAGE_CODE = 'fr'
